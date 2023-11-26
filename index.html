@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carbon Fines Chart</title>
+    <!-- Carbon fines chart CSS Begins -->
+    <link rel="stylesheet" href="carbon-fines-chart.css" />
+    <!-- Carbon fines chart CSS Ends -->
+  </head>
+  <body>
+    <div id="carbonFinesChart"></div>
+    <!-- Carbon fines chart JS Begins -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="carbon-fines-chart.js"></script>
+    <!-- Carbon fines chart JS Ends -->
+    <script>
+      // For this demo page only
+      Promise.all([
+        d3.csv("data/property_2022_esrt.csv"),
+        d3.csv("data/energy_2022_esrt.csv"),
+      ]).then(([propertyData, energyData]) => {
+        new CarbonFinesChart({
+          el: document.getElementById("carbonFinesChart"),
+          propertyData,
+          energyData,
+          propertyId: "4398177",
+        });
+      });
+    </script>
+  </body>
+</html>
